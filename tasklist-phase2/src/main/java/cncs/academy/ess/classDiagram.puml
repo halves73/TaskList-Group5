@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User{
+   -id: int
+   -username: String
+   -password: String
+   +User(id: int, username: String, password: String)
+   +User(username: String, password: String)
+   +setId(id: int): void
+   +getId(): int
+   +getUsername(): String
+   +getPassword(): String
+}
+
+class TodoList{
+    -id: int
+    -name: String
+    -ownerId: int
+    +TodoList(id: int, name: String, ownerId: int)
+    +TodoList(name: String, ownerId: int)
+    +setID(id: int): void
+    +getListId(): int
+    +getName(): String
+    +getOwnerId(): int
+}
+
+class Todo{
+    -id: int
+    -description: String
+    -completed: boolean
+    -listId: int
+    +Todo(id: int, description: String, completed: boolean, listId: int)
+    +Todo(description: String, listId: int)
+    +setIsCompleted(completed: boolean): void
+    +setId(id: int): void
+    +getId(): int
+    +getDescription(): String
+    +isCompleted(): boolean
+    +getListId(): int
+}
+
+'abstract AbstractCollection
+'interface List
+'interface Collection
+'
+'List <|-- AbstractList
+'Collection <|-- AbstractCollection
+'
+'Collection <|- List
+'AbstractCollection <|- AbstractList
+'AbstractList <|-- ArrayList
+'TodoList <|-- Todo
+'Class01 "1" *-- "many" Class02 : contains
+TodoList "1" *-- "many" Todo : contains
+User     "1" *-- "many" TodoList : contains
+@enduml
