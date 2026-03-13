@@ -1,6 +1,7 @@
 # Obter código fonte
   - name: Checkout
     uses: actions/checkout@v4
+    on: [workflow_dispatch]
     
 # Setup up JDK
   - name: Set up Java
