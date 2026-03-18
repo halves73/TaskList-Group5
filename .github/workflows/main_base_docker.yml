@@ -64,9 +64,6 @@ jobs:
         with:
           name: Generate artifact with Trivy result
           path: trivy-results.sarif
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
         
  jobs2:
     runs-on: ubuntu-latest
@@ -124,6 +121,7 @@ jobs:
           image-ref: ${{ steps.meta.outputs.tags }} 
           format: 'sarif'
           output: 'trivy-image-results.sarif'
+          exit-code: 1
           
       - name: Upload artifact to pipeline metadata 
         uses: actions/upload-artifact@v4 
