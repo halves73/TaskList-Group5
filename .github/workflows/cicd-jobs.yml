@@ -76,8 +76,8 @@ jobs:
       contents: read
       packages: write
       
-   needs: job1-SAST
-   steps:
+    needs: jobs1-SAST
+    steps:
       # Login in a Docker registry
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
