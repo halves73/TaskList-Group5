@@ -1,4 +1,4 @@
-name: CI/CD security
+name: Jobs
 on:
   workflow_dispatch:
 
@@ -10,7 +10,6 @@ env:
 
 jobs:
  jobs1-SAST:
-  security-scan:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -44,9 +43,6 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
 
- jobs2:
-  needs: job1-SAST
-  steps:
       # Trivy
       - name: Complete scan with Trivy
         uses: aquasecurity/trivy-action@0.35.0
@@ -71,7 +67,17 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
+ jobs2:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+      packages: write
+      
+    needs: jobs1-SAST
+    steps:
       # Login in a Docker registry
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
