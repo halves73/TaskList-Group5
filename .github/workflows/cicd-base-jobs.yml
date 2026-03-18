@@ -44,17 +44,6 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
 
- jobs2:
-  security-scan:
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
-      packages: write
-      
-   needs: job1-SAST
-   steps:
       # Trivy
       - name: Complete scan with Trivy
         uses: aquasecurity/trivy-action@0.35.0
@@ -79,7 +68,17 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
+ jobs2:
+  security-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+      packages: write
+      
+   needs: job1-SAST
+   steps:
       # Login in a Docker registry
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
