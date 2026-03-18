@@ -10,7 +10,6 @@ env:
 
 jobs:
  jobs1-SAST:
- security-scan:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -68,8 +67,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+        
  jobs2:
-  security-scan:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
