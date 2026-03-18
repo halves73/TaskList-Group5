@@ -43,14 +43,15 @@ jobs:
             target/bom.json
             sbom-application.sig
             sbom-application.crt            
-  needs: jobs1-SAST
+
   sbom-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
       id-token: write
-
+      
+    needs: sbom-app
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
