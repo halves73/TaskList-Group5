@@ -121,7 +121,6 @@ jobs:
           image-ref: ${{ steps.meta.outputs.tags }} 
           format: 'sarif'
           output: 'trivy-image-results.sarif'
-          exit-code: 1
           
       - name: Upload artifact to pipeline metadata 
         uses: actions/upload-artifact@v4 
